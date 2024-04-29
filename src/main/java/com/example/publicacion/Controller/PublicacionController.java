@@ -38,14 +38,30 @@ public class PublicacionController {
     @Autowired
     private PublicacionService publicacionService;
 
+    @GetMapping
+    public CollectionModel<EntityModel<PublicacionModel>> getAllPublicaciones() {
+        List<PublicacionModel> publicaciones = publicacionService.getAllPublicaciones();
+        log.info("GET /publicaciones");
+        log.info("Retornando todas las publicaciones");
+        List<EntityModel<PublicacionModel>> publicacionResources = publicaciones.stream()
+            .map( publicacionModel -> EntityModel.of(publicacionModel,
+                WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getPublicacionById(publicacionModel.getId())).withSelfRel()
+            ))
+            .collect(Collectors.toList());
+
+        WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllPublicaciones());
+        CollectionModel<EntityModel<PublicacionModel>> resources = CollectionModel.of(publicacionResources, linkTo.withRel("publicaciones"));
+
+        return resources;
+    }
 
     //LOGGIN PARA LAS PUBLICACIONES
-    @GetMapping
+    /* @GetMapping
     public List<PublicacionModel> getAllPublicaciones(){
         log.info("Get /publicacion");
         log.info("Retornado todas las publicaciones");
         return publicacionService.getAllPublicaciones();
-    }
+    } */
 
     //BUSCAR USUARIO POR ID (VALIDADO) - SI NO LO ENCUENTRA ARROJA UN MENSAJE EN EL BODY CON YUN JSON
     @GetMapping("/{id}")

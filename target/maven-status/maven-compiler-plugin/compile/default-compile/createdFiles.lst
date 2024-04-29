@@ -1,5 +1,7 @@
-com\example\publicacion\Class\Comentario.class
+com\example\publicacion\Model\PublicacionModel.class
+com\example\publicacion\Service\PublicacionServiceImpl.class
+com\example\publicacion\PublicacionApplication.class
+com\example\publicacion\Service\PublicacionService.class
 com\example\publicacion\Repository\PublicacionRepository.class
 com\example\publicacion\Controller\PublicacionController.class
-com\example\publicacion\PublicacionApplication.class
-com\example\publicacion\Class\Publicacion.class
+com\example\publicacion\Controller\PublicacionController$ErrorResponse.class
