@@ -1,0 +1,5 @@
+com\example\publicacion\Class\Comentario.class
+com\example\publicacion\Repository\PublicacionRepository.class
+com\example\publicacion\Controller\PublicacionController.class
+com\example\publicacion\PublicacionApplication.class
+com\example\publicacion\Class\Publicacion.class
